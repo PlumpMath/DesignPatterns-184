@@ -2,7 +2,8 @@ using System;
 
 class StrategyExample{
 	public static void Main(){
-		
+		var strategy = new StrategyImpl();
+		strategy.WriteStateName(new Open());
 	} 
 }
 
@@ -12,8 +13,8 @@ class StrategyBad{
 	public void WriteStateName(State state){
 		switch (state)
 		{
-			case OPEN: return "Open";
-			default: return "Closed";
+			case State.OPEN: Console.WriteLine("Open");break;
+			default: Console.WriteLine("Closed");break;
 		}
 	}
 }
@@ -31,5 +32,11 @@ interface IState{
 class Open : IState{
 	public string GetName(){
 		return "Open";
+	}
+}
+
+class Closed : IState{
+	public string GetName(){
+		return "Closed";
 	}
 }
